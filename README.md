@@ -99,6 +99,45 @@ Ikuti langkah-langkah ini untuk menjalankan proyek di komputer Anda:
 
 ---
 
+## 🌐 Cara Hosting ke Vercel
+
+Proyek ini telah dikonfigurasi agar dapat dideploy langsung ke **Vercel** menggunakan Serverless PHP Runtime (`vercel-php`).
+
+### 1. File Konfigurasi yang Tersedia:
+- `vercel.json`: Mengatur routing, environment variables, build command Vite, dan runtime PHP 8.4 (`vercel-php@0.8.0`).
+- `api/index.php`: Entrypoint jembatan untuk serverless handler dan inisialisasi direktori `/tmp/storage` (karena filesystem Vercel read-only).
+- `.vercelignore`: Mengabaikan vendor dan file sensitif saat upload ke Vercel.
+
+### 2. Cara Deploy via Vercel CLI (Terminal):
+1. Pastikan Anda sudah login ke akun Vercel:
+   ```bash
+   vercel login
+   ```
+2. Jalankan perintah deploy preview:
+   ```bash
+   vercel
+   ```
+3. Deploy langsung ke produksi:
+   ```bash
+   vercel --prod
+   ```
+
+### 3. Cara Deploy via GitHub Dashboard Vercel:
+1. Push commit terbaru ke repository GitHub Anda:
+   ```bash
+   git add .
+   git commit -m "feat: setup vercel deployment configuration"
+   git push origin main
+   ```
+2. Buka dashboard [vercel.com](https://vercel.com) dan pilih **Add New Project** > **Import Git Repository**.
+3. Pilih repository `Website-Futsal-Stiki`.
+4. Di bagian **Environment Variables**, tambahkan:
+   - `APP_KEY`: isi dengan application key Laravel Anda (contoh dari file `.env`).
+   - `APP_URL`: URL domain dari Vercel Anda (contoh `https://your-futsal-app.vercel.app`).
+5. Klik **Deploy** dan tunggu proses build selesai!
+
+---
+
 ## 📧 Kontak Pengembang
 
 Jika Anda memiliki pertanyaan tentang proyek ini, ingin berkolaborasi, atau sekadar menyapa, jangan ragu untuk menghubungi saya:
